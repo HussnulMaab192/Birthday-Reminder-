@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../components/constants.dart';
 import 'home/home.dart';
 
 class Splash extends StatefulWidget {
@@ -18,14 +20,12 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
+    gotoPage();
+  }
 
-    void initState() {
-      super.initState();
-      Timer(
-          const Duration(seconds: 3),
-          () => Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const Home())));
-    }
+  gotoPage() async {
+    await Future.delayed(const Duration(seconds: 3));
+    Get.to(const Home());
   }
 
   @override
@@ -45,29 +45,11 @@ class _SplashState extends State<Splash> {
                   Image.asset(
                     "assets/pics/splash1.png",
                   ),
-                  Text(
-                    "Birthday Reminder ",
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          letterSpacing: .65),
-                    ),
-                  ),
+                  heading(text: "Birthday Reminder "),
                   SizedBox(
                     height: 10.h,
                   ),
-                  Text(
-                    "We Remind You ! Your Special  Events ",
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          letterSpacing: .5),
-                    ),
-                  ),
+                  subHeading(text: "We Remind You ! Your Special  Events "),
                 ],
               ),
             ),
