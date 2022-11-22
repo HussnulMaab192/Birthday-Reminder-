@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../welcome/welcome_on_board.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -16,10 +18,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffE5E5E5),
       body: Stack(children: [
         SvgPicture.asset(
           "assets/svg/corner.svg",
-          color: Colors.teal.withOpacity(0.5),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,12 +45,17 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 80.h,
             ),
-            myButton(text: "Get Started", onPressed: () {})
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.h, vertical: 30.w),
+              child: myButton(
+                  text: "Get Started",
+                  onPressed: () {
+                    Get.to(const WelcomeOnBoard());
+                  }),
+            )
           ],
         ),
       ]),
     );
   }
-  // hell0 with new window !
-
 }

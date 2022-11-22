@@ -6,7 +6,7 @@ Widget myButton({required String text, required void Function()? onPressed}) {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
             const Color(0xff3DC9B8).withOpacity(0.62)),
-        minimumSize: MaterialStateProperty.all(Size(360, Get.height * 0.06)),
+        minimumSize: MaterialStateProperty.all(Size(360, Get.height * 0.07)),
         // Background color
       ),
       onPressed: onPressed,

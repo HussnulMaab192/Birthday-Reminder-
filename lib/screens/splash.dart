@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../components/constants.dart';
+import 'googleAd.dart';
 import 'home/home.dart';
 
 class Splash extends StatefulWidget {
@@ -17,16 +18,45 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  @override
-  void initState() {
-    super.initState();
-    gotoPage();
-  }
-
   gotoPage() async {
     await Future.delayed(const Duration(seconds: 3));
     Get.to(const Home());
   }
+
+  late BannerAd _bottomBannerAd;
+
+  final bool _isBottomBannerAdLoaded = false;
+  @override
+  void initState() {
+    super.initState();
+    // _createBottomBannerAd();
+    gotoPage();
+  }
+
+  // void _createBottomBannerAd() {
+  //   _bottomBannerAd = BannerAd(
+  //     adUnitId: AdHelper.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: AdRequest(),
+  //     listener: BannerAdListener(
+  //       onAdLoaded: (_) {
+  //         setState(() {
+  //           _isBottomBannerAdLoaded = true;
+  //         });
+  //       },
+  //       onAdFailedToLoad: (ad, error) {
+  //         ad.dispose();
+  //       },
+  //     ),
+  //   );
+  //   _bottomBannerAd.load();
+  // }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _bottomBannerAd.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +65,9 @@ class _SplashState extends State<Splash> {
         body: Stack(
           clipBehavior: Clip.none,
           children: [
-            SvgPicture.asset("assets/svg/corner.svg",
-                color: Colors.teal.withOpacity(0.5)),
+            SvgPicture.asset(
+              "assets/svg/corner.svg",
+            ),
             Positioned(
               top: 270.h,
               left: 50.w,
@@ -54,6 +85,13 @@ class _SplashState extends State<Splash> {
               ),
             ),
           ],
-        ));
+        ),
+        bottomNavigationBar: _isBottomBannerAdLoaded
+            ? Container(
+                height: _bottomBannerAd.size.height.toDouble(),
+                width: _bottomBannerAd.size.width.toDouble(),
+                child: AdWidget(ad: _bottomBannerAd),
+              )
+            : null);
   }
 }
