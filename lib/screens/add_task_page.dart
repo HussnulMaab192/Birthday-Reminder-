@@ -1,3 +1,5 @@
+import '../controllers/add_task_controller.dart';
+import '../widgets/buttons.dart';
 import '../widgets/text_field.dart';
 import '/models/task_model.dart';
 import 'themes.dart';
@@ -15,9 +17,9 @@ class AddTaskBar extends StatefulWidget {
 }
 
 class _AddTaskBarState extends State<AddTaskBar> {
-  TaskController _taskController = Get.put(TaskController());
-  TextEditingController _userTitle = TextEditingController();
-  TextEditingController _userNote = TextEditingController();
+  final TaskController _taskController = Get.put(TaskController());
+  final TextEditingController _userTitle = TextEditingController();
+  final TextEditingController _userNote = TextEditingController();
   DateTime? _selectedDate = DateTime.now();
   String _startTime = DateFormat('hh:mm a').format(DateTime.now()).toString();
   String _endTime = "9:29 AM";
@@ -44,7 +46,7 @@ class _AddTaskBarState extends State<AddTaskBar> {
       body: Container(
         padding: EdgeInsets.only(left: 18.w, right: 18.w, top: 10.h),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -83,7 +85,7 @@ class _AddTaskBarState extends State<AddTaskBar> {
                       hintText: _startTime,
                       lable: "Start Time",
                       widget: IconButton(
-                        icon: Icon(Icons.access_time_rounded),
+                        icon: const Icon(Icons.access_time_rounded),
                         onPressed: () {
                           _getUserTIme(isStarttime: true);
                         },
@@ -96,7 +98,7 @@ class _AddTaskBarState extends State<AddTaskBar> {
                       hintText: _endTime,
                       lable: "End Time",
                       widget: IconButton(
-                        icon: Icon(Icons.access_time_rounded),
+                        icon: const Icon(Icons.access_time_rounded),
                         onPressed: () {
                           _getUserTIme(isStarttime: false);
                         },
@@ -121,7 +123,8 @@ class _AddTaskBarState extends State<AddTaskBar> {
                         child: Text(value.toString()),
                       );
                     }).toList(),
-                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+                    icon: const Icon(Icons.keyboard_arrow_down,
+                        color: Colors.grey),
                     onChanged: (String? value) => setState(() {
                           _selectRemind = int.parse(value!);
                         })),
@@ -141,11 +144,12 @@ class _AddTaskBarState extends State<AddTaskBar> {
                         value: value.toString(),
                         child: Text(
                           value,
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       );
                     }).toList(),
-                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+                    icon: const Icon(Icons.keyboard_arrow_down,
+                        color: Colors.grey),
                     onChanged: (String? value) => setState(() {
                           _selectRepeat = value!;
                         })),
@@ -220,7 +224,7 @@ class _AddTaskBarState extends State<AddTaskBar> {
       Get.snackbar(
         "Message",
         "All the fields are required.",
-        icon: Icon(
+        icon: const Icon(
           Icons.warning_amber_outlined,
           color: Colors.amber,
         ),
@@ -229,7 +233,7 @@ class _AddTaskBarState extends State<AddTaskBar> {
       Get.snackbar(
         "Message",
         "All the fields are requird.",
-        icon: Icon(Icons.warning_amber_outlined),
+        icon: const Icon(Icons.warning_amber_outlined),
       );
     } else {
       _addToDatabase();
