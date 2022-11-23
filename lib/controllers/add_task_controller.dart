@@ -9,6 +9,12 @@ class TaskController extends GetxController {
     super.onReady();
   }
 
+  bool isDarkMode = false;
+  updateIsDarkMode() {
+    isDarkMode = !isDarkMode;
+    update();
+  }
+
 // inserting the object to the database
   var taskList = <UserTask>[].obs;
   Future<int> addTask({UserTask? task}) async {

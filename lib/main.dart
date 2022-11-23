@@ -1,3 +1,6 @@
+import 'package:birthday_reminder/controllers/add_task_controller.dart';
+import 'package:birthday_reminder/screens/themes.dart';
+import 'package:birthday_reminder/utils/theme_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,27 +28,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    Get.put(TaskController());
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return ValueListenableBuilder<Box>(
-          valueListenable: Hive.box('themedata').listenable(),
-          builder: (context, box, widget) {
-            var darkMode = box.get('darkmode', defaultValue: false);
-            return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-              ),
-              home: Splash(
-                box: box,
-                darkMode: darkMode,
-              ),
-            );
-          },
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: Themes.light,
+          darkTheme: Themes.dark,
+          themeMode: ThemeServices().theme,
+          home: Splash(),
         );
       },
     );

@@ -1,3 +1,4 @@
+import 'package:birthday_reminder/utils/theme_services.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,8 +16,8 @@ import '../../add_task_page.dart';
 
 class HomePage extends StatefulWidget {
   final box;
-  final darkMode;
-  const HomePage({Key? key, required this.box, required this.darkMode})
+  var darkMode;
+  HomePage({Key? key, required this.box, required this.darkMode})
       : super(key: key);
 
   @override
@@ -301,23 +302,24 @@ class _HomePageState extends State<HomePage> {
       elevation: 0,
       backgroundColor: Theme.of(context).backgroundColor,
       leading: Switch(
-        value: widget.darkMode,
+        value: Get.find<TaskController>().isDarkMode,
         onChanged: (value) {
-          widget.box.put('darkmode', value);
+          ThemeServices().updateTheme();
+          Get.find<TaskController>().updateIsDarkMode();
         },
       ),
 
       // await notifyHelper.scheduledNotification();
 
       actions: [
-        IconButton(
-          onPressed: () {
-            Get.snackbar("Message", "HI! 😎");
-          },
-          icon: const CircleAvatar(
-            backgroundImage: AssetImage("images/profile.jpg"),
-          ),
-        ),
+        // IconButton(
+        //   onPressed: () {
+        //     Get.snackbar("Message", "HI! 😎");
+        //   },
+        //   icon: const CircleAvatar(
+        //     backgroundImage: AssetImage("images/profile.jpg"),
+        //   ),
+        // ),
       ],
     );
   }

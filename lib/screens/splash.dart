@@ -20,7 +20,10 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   gotoPage() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.to(const Home());
+    Get.to(Home(
+      box: widget.box,
+      darkMode: widget.darkMode,
+    ));
   }
 
   late BannerAd _bottomBannerAd;
