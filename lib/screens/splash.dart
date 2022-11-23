@@ -5,13 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-
 import '../components/constants.dart';
-import 'googleAd.dart';
 import 'home/home.dart';
 
 class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+  final box;
+  final darkMode;
+  Splash({Key? key, this.box, this.darkMode}) : super(key: key);
 
   @override
   State<Splash> createState() => _SplashState();
@@ -24,7 +24,6 @@ class _SplashState extends State<Splash> {
   }
 
   late BannerAd _bottomBannerAd;
-
   final bool _isBottomBannerAdLoaded = false;
   @override
   void initState() {

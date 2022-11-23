@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../components/constants.dart';
 import '../../components/custom_button.dart';
+import 'Home/home_page.dart';
 
 class WelcomeOnBoard extends StatefulWidget {
-  const WelcomeOnBoard({Key? key}) : super(key: key);
+  final box;
+  final darkMode;
+  const WelcomeOnBoard({Key? key, this.box, this.darkMode}) : super(key: key);
 
   @override
   State<WelcomeOnBoard> createState() => _WelcomeOnBoardState();
@@ -52,7 +54,16 @@ class _WelcomeOnBoardState extends State<WelcomeOnBoard> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.h, vertical: 30.w),
-              child: myButton(text: "Register", onPressed: () {}),
+              child: myButton(
+                  text: "Register",
+                  onPressed: () {
+                    Get.to(
+                      HomePage(
+                        box: widget.box,
+                        darkMode: widget.darkMode,
+                      ),
+                    );
+                  }),
             )
           ],
         ),
