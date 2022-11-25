@@ -8,9 +8,9 @@ import '../../components/custom_button.dart';
 import 'Home/home_page.dart';
 
 class WelcomeOnBoard extends StatefulWidget {
-  final box;
-  final darkMode;
-  const WelcomeOnBoard({Key? key, this.box, this.darkMode}) : super(key: key);
+  const WelcomeOnBoard({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<WelcomeOnBoard> createState() => _WelcomeOnBoardState();
@@ -58,10 +58,7 @@ class _WelcomeOnBoardState extends State<WelcomeOnBoard> {
                   text: "Register",
                   onPressed: () {
                     Get.to(
-                      HomePage(
-                        box: widget.box,
-                        darkMode: widget.darkMode,
-                      ),
+                      HomePage(),
                     );
                   }),
             )

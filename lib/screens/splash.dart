@@ -9,9 +9,9 @@ import '../components/constants.dart';
 import 'home/home.dart';
 
 class Splash extends StatefulWidget {
-  final box;
-  final darkMode;
-  Splash({Key? key, this.box, this.darkMode}) : super(key: key);
+  Splash({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Splash> createState() => _SplashState();
@@ -20,10 +20,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   gotoPage() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.to(Home(
-      box: widget.box,
-      darkMode: widget.darkMode,
-    ));
+    Get.to(Home());
   }
 
   late BannerAd _bottomBannerAd;

@@ -15,10 +15,7 @@ import '../../../widgets/task_tile_widget.dart';
 import '../../add_task_page.dart';
 
 class HomePage extends StatefulWidget {
-  final box;
-  var darkMode;
-  HomePage({Key? key, required this.box, required this.darkMode})
-      : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -43,18 +40,30 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: _appBar(),
-      body: Container(
-        child: Column(
-          children: [
-            // appbartask bar
-            _appTaskBar(),
-            // Date Picker TimeLines
-            _appDateBar(),
-            SizedBox(height: 22.h),
-            // list of the object user tasks
-            _showUserTasks(),
-          ],
+      // appBar: _appBar(),
+      body: SafeArea(
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color(0xff7DD7CD),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(35),
+              bottomRight: Radius.circular(35),
+            ),
+          ),
+          height: 350.h,
+          width: Get.width,
+          child: Column(
+            children: [
+              // _appBar(),
+              // appbartask bar
+              _appTaskBar(),
+              // Date Picker TimeLines
+              _appDateBar(),
+              SizedBox(height: 22.h),
+              // list of the object user tasks
+              _showUserTasks(),
+            ],
+          ),
         ),
       ),
     );
@@ -226,33 +235,35 @@ class _HomePageState extends State<HomePage> {
 
   Container _appDateBar() {
     return Container(
-      margin: EdgeInsets.only(left: 20.w, top: 20.h),
+      margin: EdgeInsets.only(left: 5.w, top: 20.h),
       child: DatePicker(
         DateTime.now(),
         height: 100.h,
         width: 80.w,
         initialSelectedDate: DateTime.now(),
         selectedTextColor: Colors.white,
-        selectionColor: bluishClr,
-        dateTextStyle: GoogleFonts.lato(
-          textStyle: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w500,
-            color: Colors.grey,
-          ),
-        ),
-        dayTextStyle: GoogleFonts.lato(
+        selectionColor: const Color(0xff7DD7CD),
+        // Montserrat
+        dateTextStyle: GoogleFonts.montserrat(
           textStyle: TextStyle(
             fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
-            color: Colors.grey,
+            fontWeight: FontWeight.w400,
+            color: Colors.white,
           ),
         ),
-        monthTextStyle: GoogleFonts.lato(
+
+        dayTextStyle: GoogleFonts.montserrat(
+          textStyle: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+        ),
+        monthTextStyle: GoogleFonts.montserrat(
           textStyle: TextStyle(
             fontSize: 14.sp,
-            fontWeight: FontWeight.w500,
-            color: Colors.grey,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
           ),
         ),
         onDateChange: (date) {
@@ -275,29 +286,29 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //
-              subHeading(
-                text: DateFormat.yMMMMd().format(
-                  DateTime.now(),
-                ),
-              ),
-              heading(text: "Today")
+              // subHeading(
+              //   text: DateFormat.yMMMMd().format(
+              //     DateTime.now(),
+              //   ),
+              // ),
+              // heading(text: "Today")
             ],
           ),
 
 // add-task-button
-          MyButton(
-            lable: "+ Add Task",
-            ontap: () async {
-              await Get.to(const AddTaskBar());
-              _taskController.getTask();
-            },
-          ),
+          // MyButton(
+          //   lable: "+ Add Task",
+          //   ontap: () async {
+          //     await Get.to(const AddTaskBar());
+          //     _taskController.getTask();
+          //   },
+          // ),
         ],
       ),
     );
   }
 
-  AppBar _appBar() {
+  Widget _appBar() {
     return AppBar(
       elevation: 0,
       backgroundColor: Theme.of(context).backgroundColor,

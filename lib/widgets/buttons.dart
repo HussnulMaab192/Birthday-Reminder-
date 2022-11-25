@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../components/constants.dart';
-
 class MyButton extends StatelessWidget {
   final String lable;
   final Function()? ontap;
@@ -17,7 +15,7 @@ class MyButton extends StatelessWidget {
         width: 120.w,
         height: 45.h,
         decoration: BoxDecoration(
-          color: bluishClr,
+          color: const Color(0xff7DD7CD),
           borderRadius: BorderRadius.circular(14.r),
         ),
         child: Center(

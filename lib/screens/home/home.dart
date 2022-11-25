@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import '../welcome/welcome_on_board.dart';
 
 class Home extends StatefulWidget {
-  final box;
-  final darkMode;
-  const Home({Key? key, this.box, this.darkMode}) : super(key: key);
+  const Home({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -52,10 +52,9 @@ class _HomeState extends State<Home> {
               child: myButton(
                   text: "Get Started",
                   onPressed: () {
-                    Get.to(WelcomeOnBoard(
-                      box: widget.box,
-                      darkMode: widget.darkMode,
-                    ));
+                    Get.to(
+                      WelcomeOnBoard(),
+                    );
                   }),
             )
           ],
